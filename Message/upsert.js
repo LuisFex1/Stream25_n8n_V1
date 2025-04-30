@@ -1,6 +1,6 @@
 const F = require('../Media/functions.js');
 const fs = require('fs')
-let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
+let users_mute = fs.existsSync('./Files/Json/mute.json') ? JSON.parse(fs.readFileSync('./Files/Json/mute.json')) : fs.writeFileSync('./Files/Json/mute.json') && JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
 
 module.exports = async (sock, m) => {
    try {
