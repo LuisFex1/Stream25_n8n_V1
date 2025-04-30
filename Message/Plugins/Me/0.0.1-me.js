@@ -3,7 +3,7 @@ module.exports = {
    isMe: true,
    isPrivate: true,
    comand: ['mute', 'unmute'],
-   async exec(m) {
+   async exec(m , { reply }) {
 
       let opc = {
          mute: 'Chat muteado exitosamente',
@@ -13,10 +13,10 @@ module.exports = {
       }
 
       if (users_mute.includes(m.from) && m.comand === 'mute') {
-         await m.reply(opc['ya' + m.comand])
+         await reply(opc['ya' + m.comand])
          return
       } else if(!users_mute.includes(m.from) && m.comand === 'unmute'){
-         await m.reply(opc['ya' + m.comand])
+         await reply(opc['ya' + m.comand])
          return
       }
 
@@ -28,6 +28,6 @@ module.exports = {
          users_mute.splice(index, 1)
       }
       await F.jsonWrite('./Files/Json/mute.json', users_mute)
-      await m.reply(opc[m.comand])
+      await reply(opc[m.comand])
    }
 }
