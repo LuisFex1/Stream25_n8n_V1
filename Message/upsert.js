@@ -1,4 +1,5 @@
 const F = require('../Media/functions.js');
+const fs = require('fs')
 let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
 
 module.exports = async (sock, m) => {
