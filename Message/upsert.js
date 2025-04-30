@@ -7,7 +7,10 @@ module.exports = async (sock, m) => {
         await fs.writeFileSync('./Files/Json/mute.json',JSON.stringify([],null,4))
       }
       let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
-      
+      if(users_mute.includes(m.from) && !m.isMe) {
+            continue
+         }
+         
       const sendMedia = async (path, caption, users) => {
          const { isFile, mimetype, buffer } = await F.getFile(path)
          if (!isFile) return console.log('Path invalido')
@@ -67,10 +70,6 @@ module.exports = async (sock, m) => {
       }
 
       for (let plugin of plugins) {
-         
-         if(users_mute.includes(m.from) && !m.isMe) {
-            continue
-         }
          
          const isComand = !plugin.disable && plugin.comand ? (Array.isArray(plugin.comand) ? plugin.comand.includes(m.comand) && (bot.prefix ? m.cmd : true) : plugin.comand.test(m.body)) : false
 
