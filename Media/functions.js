@@ -6,6 +6,11 @@ module.exports = new class Functions {
    mimetype = async (path) => {
       return (await import('file-type')).fileTypeFromBuffer(path)
    }
+   
+   jsonWrite = (path, media) => {
+      const stringify = JSON.stringify(media, null, 4)
+      fs.writeFileSync(path, stringify)
+   }
 
    getFile = async (path) => {
 

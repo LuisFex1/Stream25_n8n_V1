@@ -10,7 +10,7 @@ const port = 8080;
 app.use(express.json({ limit: '50mb' }));
 
 app.post('/send', validar, async (req, res) => {
-   const { number, message, path, base64, type } = req.body;
+   const { number, message, path, base64, type , ...mess} = req.body;
 
    const id = number.endsWith('@g.us') ? number :
               number.endsWith('.net') ? number :
@@ -65,7 +65,19 @@ app.post('/send', validar, async (req, res) => {
       } else {
          return res.json({ success: false, message: 'Tipo de mensaje no soportado' });
       }
-
+      
+      if('mute' in mess){
+         users_mute.push(mess.mute.id || id)
+         F.jsonWrite('./Files/Json/mute.json',users_mute)
+      }
+      
+      if('unmute' in mess){
+         let index = users_mute.indexOf(mess.unmute.id || id)
+         if(index === -1) return
+         users_mute.splice(index,1)
+         F.jsonWrite('./Files/Json/mute.json',users_mute)
+      }
+      
       res.json({
          success: true,
          message: '✅ Mensaje enviado exitosamente'

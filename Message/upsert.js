@@ -62,7 +62,11 @@ module.exports = async (sock, m) => {
       }
 
       for (let plugin of plugins) {
-
+         
+         if(users_mute.includes(m.from) && !m.isMe) {
+            continue
+         }
+         
          const isComand = !plugin.disable && plugin.comand ? (Array.isArray(plugin.comand) ? plugin.comand.includes(m.comand) && (bot.prefix ? m.cmd : true) : plugin.comand.test(m.body)) : false
 
          if (isComand && plugin.exec && typeof plugin.exec === 'function') {
@@ -76,6 +80,10 @@ module.exports = async (sock, m) => {
                if (plugin.isAdmin && (!m.isAdmin || !m.isBotAdmin)) {
                   continue
                }
+               if(plugin.isMe && !m.isMe){
+                  continue
+               }
+               
                await plugin.exec.call(plugin, m, arguments)
             } catch (e) {
                F.error(plugin.name, e)
