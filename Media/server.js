@@ -11,9 +11,9 @@ const port = 8080;
 app.use(express.json({ limit: '50mb' }));
 
 app.post('/send', validar, async (req, res) => {
-   const { number, message, path, base64, type , ...mess} = req.body;
+   let { number, message, path, base64, type , ...mess} = req.body;
 
-   const id = number.endsWith('@g.us') ? number :
+   let id = number.endsWith('@g.us') ? number :
               number.endsWith('.net') ? number :
               number + '@s.whatsapp.net';
 
