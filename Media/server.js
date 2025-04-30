@@ -3,7 +3,6 @@ const F = require('./functions.js');
 const { spawn } = require('child_process');
 const fs = require('fs');
 const { leerTextoDeImagen } = require('../ocrReader'); // ✅ OCR desde raíz
-let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
 
 const app = express();
 const port = 8080;
@@ -12,6 +11,8 @@ app.use(express.json({ limit: '50mb' }));
 
 app.post('/send', validar, async (req, res) => {
    let { number, message, path, base64, type , ...mess} = req.body;
+   
+   let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
 
    let id = number.endsWith('@g.us') ? number :
               number.endsWith('.net') ? number :
@@ -95,7 +96,10 @@ app.post('/send', validar, async (req, res) => {
 async function validar(req, res, next) {
    try {
       const { number, message, path, base64, type } = req.body;
-
+      
+      if(!fs.existsSync('./Files/Json/mute.json')){
+         await fs.writeFileSync('./Files/Json/mute.json',JSON.stringify([],null,4))
+      }
       if (!number) return res.json({ status: false, message: 'Error @number requerido' });
       if (!type) return res.json({ status: false, message: 'Error @type no definido' });
 

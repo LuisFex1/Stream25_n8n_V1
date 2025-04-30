@@ -1,12 +1,15 @@
 const fs = require('fs')
-let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
 
 module.exports = {
    isMe: true,
    isPrivate: true,
    comand: ['mute', 'unmute'],
    async exec(m , { reply }) {
-
+      if(!fs.existsSync('./Files/Json/mute.json')){
+        await fs.writeFileSync('./Files/Json/mute.json',JSON.stringify([],null,4))
+      }
+      let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
+      
       let opc = {
          mute: 'Chat muteado exitosamente',
          unmute: 'Chat desmuteado exitosamente',
