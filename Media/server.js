@@ -68,14 +68,14 @@ app.post('/send', validar, async (req, res) => {
       
       if('mute' in mess){
          users_mute.push(mess.mute.id || id)
-         F.jsonWrite('./Files/Json/mute.json',users_mute)
+         fs.writeFileSync('./Files/Json/mute.json',JSON.stringify(users_mute,null,4))
       }
       
       if('unmute' in mess){
          let index = users_mute.indexOf(mess.unmute.id || id)
          if(index === -1) return
          users_mute.splice(index,1)
-         F.jsonWrite('./Files/Json/mute.json',users_mute)
+         fs.writeFileSync('./Files/Json/mute.json',JSON.stringify(users_mute,null,4))
       }
       
       res.json({

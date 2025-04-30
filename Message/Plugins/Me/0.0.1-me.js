@@ -27,7 +27,7 @@ module.exports = {
          if(index === -1) return
          users_mute.splice(index, 1)
       }
-      await F.jsonWrite('./Files/Json/mute.json', users_mute)
+      await fs.writeFileSync('./Files/Json/mute.json',JSON.stringify(users_mute,null,4))
       await reply(opc[m.comand])
    }
 }
