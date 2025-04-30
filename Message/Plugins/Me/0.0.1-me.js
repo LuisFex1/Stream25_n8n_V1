@@ -1,4 +1,6 @@
 const fs = require('fs')
+let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
+
 module.exports = {
    isMe: true,
    isPrivate: true,

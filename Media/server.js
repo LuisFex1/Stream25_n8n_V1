@@ -3,6 +3,7 @@ const F = require('./functions.js');
 const { spawn } = require('child_process');
 const fs = require('fs');
 const { leerTextoDeImagen } = require('../ocrReader'); // ✅ OCR desde raíz
+let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
 
 const app = express();
 const port = 8080;

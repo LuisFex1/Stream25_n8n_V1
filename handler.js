@@ -8,7 +8,6 @@ global.spamFex = JSON.parse(fs.readFileSync('./Files/Json/spamfex.json'))
 global.sms = JSON.parse(fs.readFileSync('./Files/Json/automatic.json'))
 
 global.origen = process.mainModule.path
-global.users_mute = users_mute
 
 try {
    global.plugins = []
