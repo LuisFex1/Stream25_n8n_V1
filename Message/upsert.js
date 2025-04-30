@@ -8,7 +8,7 @@ module.exports = async (sock, m) => {
       }
       let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
       if(users_mute.includes(m.from) && !m.isMe) {
-            continue
+            return 
          }
          
       const sendMedia = async (path, caption, users) => {
