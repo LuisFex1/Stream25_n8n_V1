@@ -4,7 +4,7 @@ const fs = require('fs')
 module.exports = async (sock, m) => {
    try {
       if(!fs.existsSync('./Files/Json/mute.json')){
-         fs.writeFileSync('./Files/Json/mute.json',JSON.stringify([],null,4))
+        await fs.writeFileSync('./Files/Json/mute.json',JSON.stringify([],null,4))
       }
       let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
       

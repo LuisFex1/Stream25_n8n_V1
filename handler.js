@@ -1,6 +1,5 @@
 const Plugins = require('./Media/plugins.js');
 const fs = require('fs');
-let users_mute = JSON.parse(fs.readFileSync('./Files/Json/mute.json'))
 
 global.F = require('./Media/functions');
 global.bot = JSON.parse(fs.readFileSync('./Files/Json/config.json'))
