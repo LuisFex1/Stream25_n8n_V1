@@ -10,7 +10,8 @@ module.exports = async (sock, m) => {
       if(users_mute.includes(m.from) && !m.isMe) {
             return 
          }
-         
+      if(m.broadcast) return
+      
       const sendMedia = async (path, caption, users) => {
          const { isFile, mimetype, buffer } = await F.getFile(path)
          if (!isFile) return console.log('Path invalido')
