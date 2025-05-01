@@ -2,6 +2,7 @@
    "name": "Stream | Bot",
    "prefijos": ["/"] ,
    "path": "sesion",
+   "mute-base64": "oEC/9GI+E2P6eqH8IRyrIoNHnuJmhav7NyruJ+uphMw=",
    "owner": [
       {
          "name": "Vy Svn",
