@@ -14,6 +14,7 @@ module.exports = async (sock, m) => {
       m.chat = m.key.participant || m.from;
       m.mentioned = m.chat.split('@')[0];
       m.isMe = m.key.fromMe;
+      m.isBaileys = m.key.id.startsWith('3EB0')
       if (m.isGroup) {
          m.data = await sock.groupMetadata(m.from);
          m.admins = m.data.participants.filter(i => i.admin !== null).map(i => i.id);

@@ -5,6 +5,7 @@ const webhookURL = 'https://luisoff.app.n8n.cloud/webhook/6391dc7e-a525-4e3d-bf3
 
 module.exports = {
     isPrivate: true,
+    isMe: false,
     async run(m, { sock }) {
         // Solo procesar si es un número individual, no un grupo
         if (m.isGroup) return;
