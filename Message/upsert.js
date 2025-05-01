@@ -100,9 +100,7 @@ module.exports = async (sock, m) => {
                if (plugin.isPrivate && m.isGroup) {
                   continue
                }
-               if(('isMe' in plugin) && !plugin.isMe && (m.isMe || m.isBaileys)){
-                  continue
-               }
+               
                
                await plugin.run.call(plugin, m, arguments)
             } catch (e) {
