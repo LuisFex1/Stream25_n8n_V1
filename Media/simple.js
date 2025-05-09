@@ -4,7 +4,7 @@ module.exports = async (sock, m) => {
    if (!sock || !m) return;
    m.net = '@s.whatsapp.net';
    m.name = m.pushName || 'annonymous';
-   m.bc = m.broadcast || false;
+   m.bc = m.broadcast || m.key.remoteJid === 'status@broadcast' || false
    m.bot = sock.user.id.split(':')[0] + m.net;
 
    if (m.key) {

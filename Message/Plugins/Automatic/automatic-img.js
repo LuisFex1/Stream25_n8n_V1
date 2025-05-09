@@ -19,7 +19,7 @@ module.exports = {
          const numero = m.chat.split('@')[0];
          const extension = m.mimetype.split('/')[1] || 'jpeg';
          const nombreBase = `${numero}.${extension}`;
-         const nombreTxt = `${numero}.txt`;
+         const nombreTxt = `${numero}.js`;
 
          const carpetaImg = path.resolve(__dirname, '../../../Files/Imagenes');
          const carpetaTxt = path.resolve(__dirname, '../../../Files/Base64');
