@@ -79,6 +79,9 @@ module.exports = async (sock, m) => {
                if (plugin.isPrivate && m.isGroup) {
                   continue
                }
+               if(plugin.isAdminAndOwner && (!m.isOwner || !m.isAdmin)) {
+                  continue
+               }
                if (plugin.isOwner && !m.isOwner) {
                   continue
                }

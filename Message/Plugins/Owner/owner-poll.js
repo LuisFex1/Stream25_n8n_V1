@@ -2,7 +2,7 @@ module.exports = {
    models: ['owner', '%comand text|opc1|opc2'],
    desc: 'Crea una encuesta con opciones',
    comand: ['poll'],
-   isAdmin: true,
+   isAdminAndOwner: true,
    async exec(m, { sock, reply, reac , presence }) {
 
       let v = []
